@@ -27,7 +27,7 @@
 			</div>
 			
 			<div class="note addNote pushLeft">
-				<a href="#" class="ion ion-plus-round" ></a>
+				<a href="#" class="ion ion-plus-round actionAdd" ></a>
 			</div>
 			
 			<div class="clear"></div>
@@ -41,7 +41,7 @@
 		<!-- Add / Edit note form -->
 		<div class="form-wrapper">
 			<div class="form">
-				<div class="form-header">Editer une note <i class="ion ion-close-round form-close"></i></div>
+				<div class="form-header"><span>Editer une note</span><i class="ion ion-close-round form-close"></i></div>
 				
 				<div class="form-body">
 					<form action="#" method="post">
