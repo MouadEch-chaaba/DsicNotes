@@ -56,6 +56,41 @@
 			<a href="https://github.com/MouadEch-chaaba/DsicNotes" class="ion ion-social-github"></a>
 		</div>
 		
+		<!-- Add / Edit note form -->
+		<div class="form-wrapper">
+			<div class="form">
+				<div class="form-header">Editer une note <i class="ion ion-close-round"></i></div>
+				
+				<div class="form-body">
+					<form action="#" method="post">
+					<!-- Note content -->
+					<div class="form-feild">
+						<label for="content">Contenu: </label>
+						<textarea name="content"></textarea>
+						<div class="clear"></div>
+					</div>
+					
+					<!-- Note content -->
+					<div class="form-feild">
+						<label for="importance">Importance: </label>
+						<select name="importance">
+							<option value="hight">Elevé</option>
+							<option value="medium">Moyenne</option>
+							<option value="low">basse</option>
+						</select>
+						<div class="clear"></div>
+					</div>
+					
+					<!-- Submit button -->
+					<div class="form-feild">
+						<input type="submit" value="Editer" />
+						<div class="clear"></div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 </body>
 </html>
