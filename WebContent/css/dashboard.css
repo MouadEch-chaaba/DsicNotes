@@ -3,11 +3,14 @@
 	src:url("../fonts/Lato-Regular.ttf");
 }
 
-*{
+body{
 	margin:0;
 	padding:0;
-	outline:none;
 	font-family:lato;
+}
+
+*{
+	outline:none;
 }
 
 .pushRight{
@@ -127,6 +130,7 @@
 	right:0;
 	bottom:0;
 	background:rgba(236, 240, 241,.95);
+	display:none;
 }
 
 .form-wrapper .form{
