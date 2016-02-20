@@ -20,25 +20,7 @@
 			<div class="note hight-importance pushLeft">
 				<div class="actions pushRight">
 					<a href="#" class="ion ion-close-round pushRight"></a>
-					<a href="#" class="ion ion-edit pushRight"></a>
-				</div>
-				<p>Search the difference between MVC1 and MVC2 in JEE</p>
-				<span class="ion ion-calendar creationDate">20/02/2016</span>
-			</div>
-			
-			<div class="note medium-importance pushLeft">
-				<div class="actions pushRight">
-					<a href="#" class="ion ion-close-round pushRight"></a>
-					<a href="#" class="ion ion-edit pushRight"></a>
-				</div>
-				<p>Search the difference between MVC1 and MVC2 in JEE</p>
-				<span class="ion ion-calendar creationDate">20/02/2016</span>
-			</div>
-			
-			<div class="note low-importance pushLeft">
-				<div class="actions pushRight">
-					<a href="#" class="ion ion-close-round pushRight"></a>
-					<a href="#" class="ion ion-edit pushRight"></a>
+					<a href="#" data-id="1" class="ion ion-edit pushRight actionEdit"></a>
 				</div>
 				<p>Search the difference between MVC1 and MVC2 in JEE</p>
 				<span class="ion ion-calendar creationDate">20/02/2016</span>
@@ -59,10 +41,13 @@
 		<!-- Add / Edit note form -->
 		<div class="form-wrapper">
 			<div class="form">
-				<div class="form-header">Editer une note <i class="ion ion-close-round"></i></div>
+				<div class="form-header">Editer une note <i class="ion ion-close-round form-close"></i></div>
 				
 				<div class="form-body">
 					<form action="#" method="post">
+					<!-- note ID -->
+					<input id="noteId" type="hidden" name="id" /> 
+					
 					<!-- Note content -->
 					<div class="form-feild">
 						<label for="content">Contenu: </label>
@@ -93,6 +78,7 @@
 		
 	</div>
 	
+	<script src="../js/jquery.min.js"></script>
 	<script src="../js/dashboard.js"></script>
 </body>
 </html>
