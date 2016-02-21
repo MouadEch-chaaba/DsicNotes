@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;" %>
+<jsp:useBean id="currentUser" class="com.dsic.beans.User" scope="session" />
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,8 +13,8 @@
 <body>
 	<div class="wrapper">
 		<div class="header">
-			<span class="currentUser">Mouad Ech-chaaba</span>
-			<a href="#" class="ion ion-power pushRight"></a>
+			<span class="currentUser"><jsp:getProperty property="firstName" name="currentUser"/> <jsp:getProperty property="lastName" name="currentUser"/></span>
+			<a href="../LogoutController" class="ion ion-power pushRight"></a>
 		</div>
 		
 		<div class="notes">
@@ -35,7 +36,7 @@
 		
 		<div class="footer">
 			<p>Get the source code at</p>
-			<a href="https://github.com/MouadEch-chaaba/DsicNotes" class="ion ion-social-github"></a>
+			<a href="https://github.com/MouadEch-chaaba/DsicNotes" target="blank" class="ion ion-social-github"></a>
 		</div>
 		
 		<!-- Add / Edit note form -->

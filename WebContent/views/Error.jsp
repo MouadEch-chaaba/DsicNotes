@@ -10,6 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="../css/Error.css" />
 	</head>
 <body>
-	<h1><%= exception.getMessage().toString() %></h1>
+	<h1><%=  exception!=null?  exception.getMessage().toString():"" %></h1>
 </body>
 </html>
