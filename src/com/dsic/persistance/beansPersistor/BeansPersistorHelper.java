@@ -29,7 +29,7 @@ public class BeansPersistorHelper {
 		return isReady;
 	}
 	
-	public static void prepareForDelete(IPersistentBean bean) throws IllegalArgumentException, IllegalAccessException{
+	public static void prepareForDeletion(IPersistentBean bean) throws IllegalArgumentException, IllegalAccessException{
 		Class<? extends IPersistentBean> currentBeanClass = bean.getClass();
 		
 		Field[] currentBeanFields = currentBeanClass.getDeclaredFields();
