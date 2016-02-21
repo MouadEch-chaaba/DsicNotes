@@ -4,9 +4,9 @@
 <jsp:setProperty name="currentUser" property="*" />
 
 <% 
-if(currentUser.getLogin() == null || currentUser.getPassword()() == null){ 
+if(currentUser.getLogin() == null || currentUser.getPassword() == null){ 
 	throw new Exception("Username or pass is empty");}
 else{ %>
-	<jsp:forward page="login" />
+	<jsp:forward page="LoginController" />
 <% } %>
 
