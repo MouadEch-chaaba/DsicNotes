@@ -1,6 +1,8 @@
 package com.dsic.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,7 @@ public class LoginController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Redirecting to Login page
-		request.getServletContext().getRequestDispatcher("/views/index.html").forward(request,response);
+		response.sendRedirect(request.getContextPath()+"/views/index.html");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +34,15 @@ public class LoginController extends HttpServlet {
 		UserDataAccessor userDataAccessor = UserDataAccessor.getInstance();
 		
 		// Checking if the user exists in the database
-		if(userDataAccessor.get(currentUser.getLogin(),currentUser.getPassword()) != null){
+		try {
+			currentUser = (User) userDataAccessor.get(currentUser.getLogin(),currentUser.getPassword());
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		if(currentUser != null){
+			// Restoring the currentUser in the session
+			request.getSession().setAttribute("currentUser", currentUser);
+			
 			// Redirecting to dashBoard
 			request.getServletContext().getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
 		}else{

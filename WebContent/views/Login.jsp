@@ -7,6 +7,6 @@
 if(currentUser.getLogin() == null || currentUser.getPassword() == null){ 
 	throw new Exception("Username or pass is empty");}
 else{ %>
-	<jsp:forward page="LoginController" />
+	<jsp:forward page="../LoginController" />
 <% } %>
 
