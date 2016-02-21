@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import com.dsic.dataAccessLayer.interfaces.IDataAccessor;
 
 public class UserDataAccessor implements IDataAccessor {
+	
+	private static UserDataAccessor instance = null;
+	
+	private UserDataAccessor() {
+		
+	}
+	
+	public static UserDataAccessor getInstance(){
+		return instance != null ? instance : (instance = new UserDataAccessor());
+	}
 
 	@Override
 	public Object get(int identifier) {
@@ -14,6 +24,11 @@ public class UserDataAccessor implements IDataAccessor {
 
 	@Override
 	public Object get(String identifier) {
+		
+		return null;
+	}
+	
+	public Object get(String login,String password){
 		
 		return null;
 	}
