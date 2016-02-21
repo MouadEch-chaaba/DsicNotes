@@ -1,5 +1,6 @@
 package com.dsic.beans;
 
+import com.dsic.annotations.PrimaryKey;
 import com.dsic.annotations.TableColumnName;
 import com.dsic.annotations.TableName;
 import com.dsic.persistance.interfaces.IPersistentBean;
@@ -7,6 +8,7 @@ import com.dsic.persistance.interfaces.IPersistentBean;
 @TableName("Utilisateurs")
 public class User implements IPersistentBean{
 	
+	@PrimaryKey(isAutoIncremented = true)
 	@TableColumnName("Id")
 	private int identifier;
 	
