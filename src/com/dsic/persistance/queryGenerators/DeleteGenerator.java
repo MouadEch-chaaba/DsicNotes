@@ -1,4 +1,4 @@
-package com.dsic.persistance;
+package com.dsic.persistance.queryGenerators;
 
 import java.lang.reflect.Field;
 
@@ -8,20 +8,20 @@ import com.dsic.annotations.TableName;
 import com.dsic.persistance.interfaces.IPersistentBean;
 import com.dsic.persistance.interfaces.IQueryGenerator;
 
-public class UpdateGenerator implements IQueryGenerator {
+public class DeleteGenerator implements IQueryGenerator {
 	
-	private static UpdateGenerator instance = null;
+	private static DeleteGenerator instance = null;
 	
 	private IPersistentBean currentBean;
 	
-	private String finalUpdateQuery = null;
+	private String finalDeleteQuery = null;
 	
-	private UpdateGenerator() {
+	private DeleteGenerator() {
 		
 	}
 	
-	public static UpdateGenerator getInstance(){
-		return instance!=null ? instance : (instance = new UpdateGenerator());
+	public static DeleteGenerator getInstance(){
+		return instance!=null ? instance : (instance = new DeleteGenerator());
 	}
 
 	@Override
@@ -54,62 +54,39 @@ public class UpdateGenerator implements IQueryGenerator {
 		
 		// Beginning the final query generation
 		StringBuilder sb = new StringBuilder();
-		sb.append("UPDATE "+tableName+" SET ");
+		sb.append("DELETE FROM "+tableName+" WHERE ");
 		
-		// Appending the table fields and there values
-		
-		String whereClause = "WHERE ";
-		
+		// Appending the table primary field and it's value
 		for(Field field : currentBeanFields){
 			// Modifying the field access to be accessible
 			field.setAccessible(true);
 			
-			/* If the field represents a primary key so we need to append
-			 * it's name and value to the whereClause
-			 */
 			if(field.isAnnotationPresent(PrimaryKey.class)){
 				if(field.isAnnotationPresent(TableColumnName.class)){
 					// Testing if the field is numeric
 					if(field.getType().isAssignableFrom(int.class) || field.getType().isAssignableFrom(float.class) || field.getType().isAssignableFrom(double.class)){
-						whereClause += field.getAnnotation(TableColumnName.class).value() + " = "+field.get(this.currentBean)+";";
+						sb.append(field.getAnnotation(TableColumnName.class).value() + " = "+field.get(this.currentBean)+";");
 					}else{
-						whereClause += field.getAnnotation(TableColumnName.class).value() + " = '"+field.get(this.currentBean)+"';";
+						sb.append(field.getAnnotation(TableColumnName.class).value() + " = '"+field.get(this.currentBean)+"';");
 					}
 				}else{
 					// Testing if the field is numeric
 					if(field.getType().isAssignableFrom(int.class) || field.getType().isAssignableFrom(float.class) || field.getType().isAssignableFrom(double.class)){
-						whereClause += field.getName() + " = "+field.get(this.currentBean)+";";
+						sb.append(field.getName() + " = "+field.get(this.currentBean)+";");
 					}else{
-						whereClause += field.getName() + " = '"+field.get(this.currentBean)+"';";
+						sb.append(field.getName() + " = '"+field.get(this.currentBean)+"';");
 					}
 				}
-			}else{
-				if(field.isAnnotationPresent(TableColumnName.class)){
-					if(field.getType().isAssignableFrom(int.class) || field.getType().isAssignableFrom(float.class) || field.getType().isAssignableFrom(double.class)){
-						sb.append(field.getAnnotation(TableColumnName.class).value()+" = "+field.get(this.currentBean)+",");
-					}else{
-						sb.append(field.getAnnotation(TableColumnName.class).value()+" = '"+field.get(this.currentBean)+"',");
-					}
-				}else{
-					if(field.getType().isAssignableFrom(int.class) || field.getType().isAssignableFrom(float.class) || field.getType().isAssignableFrom(double.class)){
-						sb.append(field.getName()+" = "+field.get(this.currentBean)+",");
-					}else{
-						sb.append(field.getName()+" = '"+field.get(this.currentBean)+"',");
-					}
-				}
+				break;
 			}
 		}
 		
-		// cleaning and Appending the where clause to the query
-		sb.setCharAt(sb.lastIndexOf(","), ' ');
-		sb.append(whereClause);
-		
 		// Storing the final Query
-		this.finalUpdateQuery = sb.toString();
+		this.finalDeleteQuery = sb.toString();
 	}
 
 	@Override
 	public String getQuery() {
-		return this.finalUpdateQuery;
+		return this.finalDeleteQuery;
 	}
 }
