@@ -13,6 +13,9 @@ $('.actionEdit').on('click',function(e){
 	// Storing the current note id in the hidden input
 	$('#noteId').attr('value',currentNoteId);
 	
+	// Changing the submit button text
+	form.find("input[type='submit']").attr("value","Editer");
+	
 	// Showing the Edit form
 	$('.form-wrapper').css('display','block');
 });
@@ -23,6 +26,15 @@ $('.actionAdd').on('click',function(e){
 	
 	// Changing the form title
 	$('.form-header span').text("Ajouter une note");
+	
+	// Changing the form Action
+	form.attr("action",$(this).attr("href"));
+	
+	// Changing the submit button text
+	form.find("input[type='submit']").attr("value","Ajouter");
+	
+	// Removing the hidden input
+	form.find("input[type='hidden']").remove();
 	
 	// Showing the Edit form
 	$('.form-wrapper').css('display','block');

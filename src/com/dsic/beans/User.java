@@ -10,7 +10,7 @@ public class User implements IPersistentBean{
 	
 	@PrimaryKey(isAutoIncremented = true)
 	@TableColumnName("Id")
-	private int identifier;
+	private Integer identifier;
 	
 	@TableColumnName("login")
 	private String login;
