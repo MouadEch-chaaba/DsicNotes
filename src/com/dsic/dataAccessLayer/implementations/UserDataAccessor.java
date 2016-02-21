@@ -27,6 +27,11 @@ public class UserDataAccessor implements IDataAccessor {
 		
 		return null;
 	}
+	
+	public Object get(String login,String password){
+		
+		return null;
+	}
 
 	@Override
 	public ArrayList<Object> getAll() {
