@@ -44,12 +44,12 @@ public class NoteDataAccessor implements IDataAccessor {
 		return null;
 	}
 	
-	public ArrayList<Object> getAllForOwner(User owner) throws ClassNotFoundException, SQLException{
+	public ArrayList<Note> getAllForOwner(User owner) throws ClassNotFoundException, SQLException{
 		// Getting a connection to database
 		Connection connection = ConnectionManager.getConnection();
 		Statement statement = connection.createStatement();
 		
-		ArrayList<Object> notes = new ArrayList<Object>();
+		ArrayList<Note> notes = new ArrayList<Note>();
 		
 		ResultSet result = statement.executeQuery("SELECT * FROM notes WHERE id_user = "+owner.getIdentifier());
 		
