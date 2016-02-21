@@ -2,6 +2,7 @@ package com.dsic.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dsic.beans.Note;
 import com.dsic.beans.User;
+import com.dsic.dataAccessLayer.implementations.NoteDataAccessor;
 import com.dsic.dataAccessLayer.implementations.UserDataAccessor;
 
 
@@ -42,6 +45,18 @@ public class LoginController extends HttpServlet {
 		if(currentUser != null){
 			// Restoring the currentUser in the session
 			request.getSession().setAttribute("currentUser", currentUser);
+			
+			// Getting all notes of the current user
+			NoteDataAccessor noteDataAccessor = NoteDataAccessor.getInstance();
+			ArrayList<Note> notes = null;
+			try {
+				notes =  noteDataAccessor.getAllForOwner(currentUser);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			// Storing the userNotes in the session
+			request.getSession().setAttribute("currentUserNotes", notes);
 			
 			// Redirecting to dashBoard
 			request.getServletContext().getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
