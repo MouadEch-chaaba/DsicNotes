@@ -8,11 +8,8 @@ public class NoteDataAccessor implements IDataAccessor {
 	
 	private static NoteDataAccessor instance = null;
 	
-<<<<<<< HEAD
-	private NoteDataAccessor() {
-=======
+
 	private NoteDataAccessor(){
->>>>>>> Controllers
 		
 	}
 	

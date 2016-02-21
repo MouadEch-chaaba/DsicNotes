@@ -14,11 +14,8 @@ public class UserDataAccessor implements IDataAccessor {
 	
 	private static UserDataAccessor instance = null;
 	
-<<<<<<< HEAD
-	private UserDataAccessor() {
-=======
+
 	private UserDataAccessor(){
->>>>>>> Controllers
 		
 	}
 	
@@ -38,11 +35,6 @@ public class UserDataAccessor implements IDataAccessor {
 		return null;
 	}
 	
-<<<<<<< HEAD
-	public Object get(String login,String password){
-		
-		return null;
-=======
 	public Object get(String login,String password) throws SQLException, ClassNotFoundException{
 		// Getting a connection to database
 		Connection connection = ConnectionManager.getConnection();
@@ -62,7 +54,7 @@ public class UserDataAccessor implements IDataAccessor {
 			break;
 		}
 		return user;
->>>>>>> Controllers
+
 	}
 
 	@Override
