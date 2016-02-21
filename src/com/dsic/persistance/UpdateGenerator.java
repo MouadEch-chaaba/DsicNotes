@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 import com.dsic.annotations.PrimaryKey;
 import com.dsic.annotations.TableColumnName;
 import com.dsic.annotations.TableName;
-import com.dsic.beans.Note;
-import com.dsic.beans.User;
 import com.dsic.persistance.interfaces.IPersistentBean;
 import com.dsic.persistance.interfaces.IQueryGenerator;
 
