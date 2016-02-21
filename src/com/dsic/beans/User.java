@@ -2,9 +2,10 @@ package com.dsic.beans;
 
 import com.dsic.annotations.TableColumnName;
 import com.dsic.annotations.TableName;
+import com.dsic.persistance.interfaces.IPersistentBean;
 
 @TableName("Utilisateurs")
-public class User {
+public class User implements IPersistentBean{
 	
 	@TableColumnName("Id")
 	private int identifier;
