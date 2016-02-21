@@ -1,4 +1,4 @@
-package com.dsic.persistance;
+package com.dsic.persistance.interfaces;
 
 public interface IQueryGenerator {
 	
