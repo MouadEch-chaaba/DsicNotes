@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="currentUser" class="com.dsic.beans.User" scope="session" />
 <!DOCTYPE html>
 <html>
@@ -18,14 +19,17 @@
 		</div>
 		
 		<div class="notes">
-			<div class="note hight-importance pushLeft">
-				<div class="actions pushRight">
-					<a href="#" class="ion ion-close-round pushRight"></a>
-					<a href="#" data-id="1" class="ion ion-edit pushRight actionEdit"></a>
+			
+			<c:forEach items="${currentUserNotes}" var="note">
+				<div class="note ${note.importance}-importance pushLeft">
+					<div class="actions pushRight">
+						<a href="#" class="ion ion-close-round pushRight"></a>
+						<a href="#" data-id="${note.identifier}" class="ion ion-edit pushRight actionEdit"></a>
+					</div>
+					<p>${note.content}</p>
+					<span class="ion ion-calendar creationDate">${note.date}</span>
 				</div>
-				<p>Search the difference between MVC1 and MVC2 in JEE</p>
-				<span class="ion ion-calendar creationDate">20/02/2016</span>
-			</div>
+			</c:forEach>
 			
 			<div class="note addNote pushLeft">
 				<a href="#" class="ion ion-plus-round actionAdd" ></a>
@@ -47,7 +51,7 @@
 				<div class="form-body">
 					<form action="#" method="post">
 					<!-- note ID -->
-					<input id="noteId" type="hidden" name="id" /> 
+					<input id="noteId" type="hidden" name="identifier" /> 
 					
 					<!-- Note content -->
 					<div class="form-feild">
@@ -60,7 +64,7 @@
 					<div class="form-feild">
 						<label for="importance">Importance: </label>
 						<select name="importance">
-							<option value="hight">Elevé</option>
+							<option value="high">Elevé</option>
 							<option value="medium">Moyenne</option>
 							<option value="low">basse</option>
 						</select>

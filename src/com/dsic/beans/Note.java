@@ -19,6 +19,17 @@ public class Note implements IPersistentBean{
 	@TableColumnName("id_user")
 	private int owner;
 	
+	@TableColumnName("createdAt")
+	private String date;
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public Note(){
 		
 	}
