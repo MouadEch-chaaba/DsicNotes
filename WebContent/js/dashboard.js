@@ -7,6 +7,9 @@ $('.actionEdit').on('click',function(e){
 	// Changing the form title
 	$('.form-header span').text("Editer une note");
 	
+	// Changing the form Action
+	form.attr("action",$(this).attr("href"));
+	
 	// Storing the ID of the current note
 	var currentNoteId = $(this).attr("data-id");
 	
@@ -15,6 +18,23 @@ $('.actionEdit').on('click',function(e){
 	
 	// Changing the submit button text
 	form.find("input[type='submit']").attr("value","Editer");
+	
+	// Filling the form with the targeted note values
+	var targetedNote = e.target.parentElement.parentElement;
+	
+	form.find("textarea").val($(targetedNote).find("p").text());
+	
+	// Getting the tagreted note importance
+	var targetedNoteImportance = $(targetedNote).attr("data-importance");
+	
+	var options = form.find("option");
+	
+	$.each(options,function(key,option){
+		if(option.value == targetedNoteImportance){
+			option.selected = true;
+		}
+	});
+	
 	
 	// Showing the Edit form
 	$('.form-wrapper').css('display','block');

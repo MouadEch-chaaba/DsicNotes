@@ -21,10 +21,10 @@
 		<div class="notes">
 			
 			<c:forEach items="${currentUserNotes}" var="note">
-				<div class="note ${note.importance}-importance pushLeft">
+				<div class="note ${note.importance}-importance pushLeft" data-importance="${note.importance}">
 					<div class="actions pushRight">
 						<a href="#" class="ion ion-close-round pushRight"></a>
-						<a href="#" data-id="${note.identifier}" class="ion ion-edit pushRight actionEdit"></a>
+						<a href="UpdateNote.jsp" data-id="${note.identifier}" class="ion ion-edit pushRight actionEdit"></a>
 					</div>
 					<p>${note.content}</p>
 					<span class="ion ion-calendar creationDate">${note.date}</span>
