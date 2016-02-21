@@ -32,7 +32,7 @@
 			</c:forEach>
 			
 			<div class="note addNote pushLeft">
-				<a href="#" class="ion ion-plus-round actionAdd" ></a>
+				<a href="AddNote.jsp" class="ion ion-plus-round actionAdd" ></a>
 			</div>
 			
 			<div class="clear"></div>

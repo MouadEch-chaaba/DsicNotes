@@ -10,7 +10,7 @@ public class Note implements IPersistentBean{
 	
 	@PrimaryKey(isAutoIncremented = true)
 	@TableColumnName("Id")
-	private int identifier;
+	private Integer identifier;
 	
 	private String content;
 	

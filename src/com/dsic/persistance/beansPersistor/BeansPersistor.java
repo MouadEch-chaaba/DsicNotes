@@ -89,11 +89,14 @@ public class BeansPersistor {
 		// Loading the Appropriate Generator
 		this.loadGenerator(action);
 		
+		// Preparing the Appropriate query for the current bean
+		this.currentGenerator.prepareQueryFor(this.currentBean);
+		
 		// Getting a connection to the Database
 		Connection connection = ConnectionManager.getConnection();
 		
 		// Executing the Appropriate Query
-		connection.createStatement().executeQuery(this.currentGenerator.getQuery());
+		connection.createStatement().executeUpdate(this.currentGenerator.getQuery());
 	}
 	
 }
