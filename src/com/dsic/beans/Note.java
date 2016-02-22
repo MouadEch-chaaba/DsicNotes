@@ -17,7 +17,7 @@ public class Note implements IPersistentBean{
 	private String importance;
 	
 	@TableColumnName("id_user")
-	private int owner;
+	private Integer owner;
 	
 	@TableColumnName("createdAt")
 	private String date;
@@ -58,11 +58,11 @@ public class Note implements IPersistentBean{
 		this.importance = importance;
 	}
 
-	public int getOwner() {
+	public Integer getOwner() {
 		return owner;
 	}
 
-	public void setOwner(int owner) {
+	public void setOwner(Integer owner) {
 		this.owner = owner;
 	}
 	
