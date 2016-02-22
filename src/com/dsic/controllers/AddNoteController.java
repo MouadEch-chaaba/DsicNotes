@@ -60,7 +60,7 @@ public class AddNoteController extends HttpServlet {
 			request.getSession().setAttribute("currentUserNotes", notes);
 			
 			// Redirecting to dashBoard
-			request.getServletContext().getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/views/dashboard.jsp");
 		} catch (IllegalArgumentException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

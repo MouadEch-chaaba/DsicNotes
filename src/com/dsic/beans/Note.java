@@ -34,11 +34,11 @@ public class Note implements IPersistentBean{
 		
 	}
 
-	public int getIdentifier() {
+	public Integer getIdentifier() {
 		return identifier;
 	}
 
-	public void setIdentifier(int identifier) {
+	public void setIdentifier(Integer identifier) {
 		this.identifier = identifier;
 	}
 

@@ -4,27 +4,23 @@ var form = $('.form-wrapper form');
 $('.actionEdit').on('click',function(e){
 	e.preventDefault();
 	
-	// Changing the form title
-	$('.form-header span').text("Editer une note");
-	
-	// Changing the form Action
-	form.attr("action",$(this).attr("href"));
-	
-	// Storing the ID of the current note
-	var currentNoteId = $(this).attr("data-id");
-	
-	// Storing the current note id in the hidden input
-	$('#noteId').attr('value',currentNoteId);
-	
-	// Changing the submit button text
-	form.find("input[type='submit']").attr("value","Editer");
-	
-	// Filling the form with the targeted note values
+	// Getting the targeted note
 	var targetedNote = e.target.parentElement.parentElement;
 	
+	// Storing the current note id in the appropriate hidden input
+	$('#noteId').attr('value',$(targetedNote).attr("data-id"));
+	
+	// Storing the current note date in the appropriate hidden input
+	$('#noteDate').attr('value',$(targetedNote).attr("data-date"));
+	
+	// Storing the current note owner in the appropriate hidden input
+	$('#noteOwner').attr('value',$(targetedNote).attr("data-owner"));
+	
+	
+	// Filling the form with the targeted note values
 	form.find("textarea").val($(targetedNote).find("p").text());
 	
-	// Getting the tagreted note importance
+	// Getting the targeted note importance
 	var targetedNoteImportance = $(targetedNote).attr("data-importance");
 	
 	var options = form.find("option");
@@ -35,6 +31,14 @@ $('.actionEdit').on('click',function(e){
 		}
 	});
 	
+	// Changing the form title
+	$('.form-header span').text("Editer une note");
+	
+	// Changing the form Action
+	form.attr("action",$(this).attr("href"));
+	
+	// Changing the submit button text
+	form.find("input[type='submit']").attr("value","Editer");
 	
 	// Showing the Edit form
 	$('.form-wrapper').css('display','block');
@@ -53,8 +57,12 @@ $('.actionAdd').on('click',function(e){
 	// Changing the submit button text
 	form.find("input[type='submit']").attr("value","Ajouter");
 	
-	// Removing the hidden input
-	form.find("input[type='hidden']").remove();
+	// Removing the hidden input's values
+	var hiddenInputs = form.find("input[type='hidden']");
+	
+	hiddenInputs.each(function(key,input){
+		input.value="";
+	});
 	
 	// Showing the Edit form
 	$('.form-wrapper').css('display','block');

@@ -7,7 +7,6 @@
 		<meta charset="UTF-8">
 		<title>Dashboard</title>
 		<link rel="stylesheet" href="../css/ionicons.min.css" />
-		<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="../css/dashboard.css" />
 	</head>
 
@@ -21,10 +20,10 @@
 		<div class="notes">
 			
 			<c:forEach items="${currentUserNotes}" var="note">
-				<div class="note ${note.importance}-importance pushLeft" data-importance="${note.importance}">
+				<div class="note ${note.importance}-importance pushLeft" data-id="${note.identifier}" data-owner="${currentUser.identifier}" data-date="${note.date}" data-importance="${note.importance}">
 					<div class="actions pushRight">
 						<a href="#" class="ion ion-close-round pushRight"></a>
-						<a href="UpdateNote.jsp" data-id="${note.identifier}" class="ion ion-edit pushRight actionEdit"></a>
+						<a href="UpdateNote.jsp" class="ion ion-edit pushRight actionEdit"></a>
 					</div>
 					<p>${note.content}</p>
 					<span class="ion ion-calendar creationDate">${note.date}</span>
@@ -51,7 +50,13 @@
 				<div class="form-body">
 					<form action="#" method="post">
 					<!-- note ID -->
-					<input id="noteId" type="hidden" name="identifier" /> 
+					<input id="noteId" type="hidden" name="identifier" />
+					
+					<!-- note Date -->
+					<input id="noteDate" type="hidden" name="date" /> 
+					
+					<!-- note Owner -->
+					<input id="noteOwner" type="hidden" name="owner" /> 
 					
 					<!-- Note content -->
 					<div class="form-feild">

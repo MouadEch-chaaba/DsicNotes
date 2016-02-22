@@ -36,16 +36,11 @@ public class UpdateNoteController extends HttpServlet {
 		// Getting the currentUser from the session
 		User currentUser = (User) request.getSession().getAttribute("currentUser");
 		
-		currentNote.setOwner(currentUser.getIdentifier());
-		Calendar calendar = Calendar.getInstance();
-		String currentSystemDate = calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
-		currentNote.setDate(currentSystemDate);
-		
 		// Getting the BeansPersistor
 		try {
 			BeansPersistor.getInstance().takeCareOf(currentNote);
 			
-			// Getting all notes of the current user
+			// Getting all notes owned by the current user
 			NoteDataAccessor noteDataAccessor = NoteDataAccessor.getInstance();
 			ArrayList<Note> notes = null;
 			try {
@@ -58,7 +53,7 @@ public class UpdateNoteController extends HttpServlet {
 			request.getSession().setAttribute("currentUserNotes", notes);
 			
 			// Redirecting to dashBoard
-			request.getServletContext().getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/views/dashboard.jsp");
 		} catch (IllegalArgumentException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
