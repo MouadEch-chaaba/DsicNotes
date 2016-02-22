@@ -17,12 +17,13 @@ public class BeansPersistorHelper {
 		
 		for(Field field : currentBeanFields){
 			field.setAccessible(true);
-			
-			if(field.get(bean) == null){
-				isReady = true;
-			}else{
-				isReady = false;
-				break;
+			if(!field.isAnnotationPresent(PrimaryKey.class)){
+				if(field.get(bean) == null){
+					isReady = true;
+				}else{
+					isReady = false;
+					break;
+				}
 			}
 		}
 		

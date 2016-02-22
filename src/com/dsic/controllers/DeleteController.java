@@ -3,7 +3,6 @@ package com.dsic.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,38 +14,31 @@ import com.dsic.beans.Note;
 import com.dsic.beans.User;
 import com.dsic.dataAccessLayer.implementations.NoteDataAccessor;
 import com.dsic.persistance.beansPersistor.BeansPersistor;
+import com.dsic.persistance.beansPersistor.BeansPersistorHelper;
 
-@WebServlet("/AddNoteController")
-public class AddNoteController extends HttpServlet {
+@WebServlet("/DeleteController")
+public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-    public AddNoteController() {
+    public DeleteController() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Getting the currentNote from the session
-		Note currentNote = (Note) request.getSession().getAttribute("currentNote");
-		currentNote.setIdentifier(null);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Getting the identifier of the note
+		Integer identifier = Integer.valueOf(request.getParameter("identifier"));
 		
 		// Getting the currentUser from the session
 		User currentUser = (User) request.getSession().getAttribute("currentUser");
 		
-		// Filling the currentNote date
-		Calendar calendar = Calendar.getInstance();
-		String currentSystemDate = calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
-		currentNote.setDate(currentSystemDate);
+		Note n = new Note();
+		n.setIdentifier(identifier);
 		
-		// Filling the currentNote Owner 
-		currentNote.setOwner(currentUser.getIdentifier());
-		
-		// Getting the BeansPersistor
 		try {
-			BeansPersistor.getInstance().takeCareOf(currentNote);
+			BeansPersistorHelper.prepareForDeletion(n);
+			BeansPersistor.getInstance().takeCareOf(n);
 			
 			// Getting all notes of the current user
 			NoteDataAccessor noteDataAccessor = NoteDataAccessor.getInstance();
@@ -65,6 +57,13 @@ public class AddNoteController extends HttpServlet {
 		} catch (IllegalArgumentException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

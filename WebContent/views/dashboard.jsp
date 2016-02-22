@@ -22,7 +22,7 @@
 			<c:forEach items="${currentUserNotes}" var="note">
 				<div class="note ${note.importance}-importance pushLeft" data-id="${note.identifier}" data-owner="${currentUser.identifier}" data-date="${note.date}" data-importance="${note.importance}">
 					<div class="actions pushRight">
-						<a href="#" class="ion ion-close-round pushRight"></a>
+						<a href="../DeleteController?identifier=${note.identifier}" class="ion ion-close-round pushRight"></a>
 						<a href="UpdateNote.jsp" class="ion ion-edit pushRight actionEdit"></a>
 					</div>
 					<p>${note.content}</p>
