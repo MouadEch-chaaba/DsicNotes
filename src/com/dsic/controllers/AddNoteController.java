@@ -31,6 +31,7 @@ public class AddNoteController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Getting the currentNote from the session
 		Note currentNote = (Note) request.getSession().getAttribute("currentNote");
+		currentNote.setIdentifier(null);
 		
 		// Getting the currentUser from the session
 		User currentUser = (User) request.getSession().getAttribute("currentUser");
